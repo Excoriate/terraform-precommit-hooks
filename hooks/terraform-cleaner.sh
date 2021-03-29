@@ -65,8 +65,8 @@ NAME
     terraform_cleaner.sh - Hook for search and clean up .terraform folders to safely do local TF cmd executions
 
 SYNOPSIS
-    terraform_fmt.sh [-h|--help]
-    terraform_fmt.sh [-d|--dir[=<arg>]]
+    terraform-cleaner.sh [-h|--help]
+    terraform-cleaner.sh [-d|--dir[=<arg>]]
                       [--]
 
 OPTIONS

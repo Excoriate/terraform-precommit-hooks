@@ -57,8 +57,8 @@ NAME
     terraform_fmt.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the terraform fmt cmd
 
 SYNOPSIS
-    terraform_fmt.sh [-h|--help]
-    terraform_fmt.sh [-d|--dir[=<arg>]]
+    terraform-fmt.sh [-h|--help]
+    terraform-fmt.sh [-d|--dir[=<arg>]]
                       [--]
 
 OPTIONS

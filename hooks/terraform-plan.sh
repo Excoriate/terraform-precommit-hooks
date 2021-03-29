@@ -22,8 +22,8 @@ NAME
     terraform_plan.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the terraform plan cmd
 
 SYNOPSIS
-    terraform_plan.sh [-h|--help]
-    terraform_plan.sh [-d|--dir[=<arg>]]
+    terraform-plan.sh [-h|--help]
+    terraform-plan.sh [-d|--dir[=<arg>]]
                       [-v|--vars[=<arg>]]
                       [-b|--backend[=<arg>]]
                       [--]

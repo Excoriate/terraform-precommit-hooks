@@ -44,8 +44,8 @@ NAME
     terraform_docs.sh - Automate terraform documentation
 
 SYNOPSIS
-    terraform_plan.sh [-h|--help]
-    terraform_plan.sh [-d|--dir[=<arg>]]
+    terraform-docs.sh [-h|--help]
+    terraform-docs.sh [-d|--dir[=<arg>]]
                       [--]
 
 OPTIONS

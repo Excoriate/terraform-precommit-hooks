@@ -52,10 +52,10 @@ NAME
     terraform_lint.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the terraform TFLINT utility
 
 SYNOPSIS
-    terraform_lint.sh [-h|--help]
-    terraform_lint.sh [-d|--dir[=<arg>]]
-    terraform_lint.sh [-|--module[=<true/false>]]
-    terraform_lint.sh [-c|--config[=<arg>]]
+    terraform-lint.sh [-h|--help]
+    terraform-lint.sh [-d|--dir[=<arg>]]
+    terraform-lint.sh [-|--module[=<true/false>]]
+    terraform-lint.sh [-c|--config[=<arg>]]
                       [--]
 
 OPTIONS

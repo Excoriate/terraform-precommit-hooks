@@ -101,8 +101,8 @@ NAME
     terraform_validate.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the terraform validate cmd
 
 SYNOPSIS
-    terraform_validate.sh [-h|--help]
-    terraform_validate.sh [-d|--dir[=<arg>]]
+    terraform-validate.sh [-h|--help]
+    terraform-validate.sh [-d|--dir[=<arg>]]
                       		[--]
 
 OPTIONS

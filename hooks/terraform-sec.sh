@@ -49,7 +49,7 @@ check_terraform_files_in_directory() {
 usage() {
   cat - >&2 <<EOF
 NAME
-    terraform_sec.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the tfsec utility
+    terraform-sec.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the tfsec utility
 
 SYNOPSIS
     terraform_fmt.sh [-h|--help]
