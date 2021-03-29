@@ -1,0 +1,35 @@
+{
+  "name": "terraform-precommit-hooks",
+  "version": "0.0.0",
+  "scripts": {
+    "commit": "git-cz",
+    "lib:install": "chmod +x setup/install-all-packages.sh && ./setup/install-all-packages.sh",
+    "push": "git push --follow-tags --set-upstream origin $(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p')",
+    "push:force": "git push --follow-tags --set-upstream origin $(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p') --force",
+    "release": "standard-version -a && git add --all -v"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "auto-changelog": "^2.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "4.3.0",
+    "standard-version": "^9.0.0"
+  },
+  "lint-staged": {
+    "*.{tf,tfvars}": [
+      "npm run lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

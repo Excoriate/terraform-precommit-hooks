@@ -1,0 +1,69 @@
+# Terraform format: Checker and fixer
+- id: terraform-fmt
+  name: Terraform Format (check & fix)
+  description: Rewrites all Terraform configuration files to a canonical format (see documentation)
+  entry: hooks/terraform-fmt.sh
+  language: script
+  files: ^.*\.(tf|tfvars)$
+  exclude: ^.*\.(hcl|json|bash|config|lock|sh|txt|md|zip)$
+  require_serial: true
+
+# Terraform Cleaner
+- id: terraform-clean
+  name: Terraform Metadata Cleaner
+  description: Clean .terraform folder in local execution contexts
+  entry: hooks/terraform-cleaner.sh
+  language: script
+  files: ^.*\.(tf|tfvars)$
+  exclude: \.terraform\/.*$
+  require_serial: true
+
+# Terraform TFLint: linting using this framework. Preventing bugs
+# FIXME: Bug? hook either skip or show no errors, Does not detect staged changes
+- id: terraform-lint
+  name: Terraform linter
+  description: Validates all Terraform configuration using TFLint.
+  entry: hooks/terraform-lint.sh
+  language: script
+  files: (\.tf|\.tfvars)$
+  exclude: ^.*\.(hcl|json|bash|config|lock|sh|txt|md|zip)$
+  require_serial: true
+
+# Terraform validation: require initialization
+- id: terraform-validate
+  name: Terraform validate
+  description: Validates all Terraform configuration files.
+  require_serial: true
+  entry: hooks/terraform-validate.sh
+  language: script
+  files: (\.tf|\.tfvars)$
+  exclude: \.terraform\/.*$
+
+# Terraform Documentation: Automatically generate and keep updated the documentation
+- id: terraform-docs
+  name: Terraform Documentation
+  description: Generate and keep up to date the documentation of terraform components
+  entry: hooks/terraform-docs.sh
+  language: script
+  files: (\.tf|\.tfvars)$
+  exclude: \.terraform\/.*$
+  require_serial: true
+
+# Terraform Security: Run a security analysis using TFSEC
+- id: terraform-sec
+  name: Terraform Security Analysis
+  description: Validates all Terraform configuration from the security point of view
+  entry: hooks/terraform-sec.sh
+  language: script
+  files: (\.tf|\.tfvars)$
+  exclude: \.terraform\/.*$
+  require_serial: true
+
+- id: terraform-plan
+  name: Terraform Plan
+  description: Run a complete terraform plan command
+  entry: hooks/terraform-plan.sh
+  language: script
+  files: (\.tf|\.tfvars)$
+  exclude: \.terraform\/.*$
+  require_serial: true
