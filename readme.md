@@ -13,7 +13,7 @@ These hooks works with  [pre-commit](https://pre-commit.com/) and act onto (`*.t
 | `terraform-docs`                                 | Generate and keep up to date the documentation of terraform components. Re-write the `readme.md` file dynamically                                                      |
 | `terraform-lint`                               | Use [TFLint](https://github.com/terraform-linters/tflint) to prevent bugs!                           |
 | `terraform-clean`                                 | Get rid of the `.terraform` folder on local executions, after you've done all your local terraform commands. |
-| `terragrunt-sec`                            | Validates all Terraform configuration from the security point of view. It uses [TFSec](https://github.com/liamg/tfsec)                       |
+| `terraform-sec`                            | Validates all Terraform configuration from the security point of view. It uses [TFSec](https://github.com/liamg/tfsec)                       |
 | `terraform-plan`                                | Execute terraform plan command onto specific terraform modules |
 
 ## Configuration
