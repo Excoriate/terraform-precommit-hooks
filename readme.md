@@ -2,6 +2,20 @@
 
 These Hooks work out with pre-commit framework 🚀 — These hooks found inspiration in some other nice projects available in the community, however, I've added my own additions, like adding a hook to cleaning up the `.terraform` (metadata) folder which is usually generated whenever we run a local `terraform` command, or the addition of the `terraform plan` hook as well.
 
+## Hooks
+
+These hooks works with  [pre-commit](https://pre-commit.com/) and act onto (`*.tf` and `*.tfvars`) depending on the `file` configuration placed in the main `.pre-commit.hooks.yaml` file. Whether in the future I (or anyone who wanna contribute here) found that's needed a new hook, please, feel free to raise a `feature request or, even better! just push your PR!
+
+| Hook                                              | Description                                                                                                                |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `terraform-validate`                             | Validates all Terraform configuration files.                                                                               |
+| `terraform-fmt`                                  | Format (check and fix) Terraform configuration following the canonical format.                                                          |
+| `terraform-docs`                                 | Generate and keep up to date the documentation of terraform components. Re-write the `readme.md` file dynamically                                                      |
+| `terraform-lint`                               | Use [TFLint](https://github.com/terraform-linters/tflint) to prevent bugs!                           |
+| `terraform-clean`                                 | Get rid of the `.terraform` folder on local executions, after you've done all your local terraform commands. |
+| `terragrunt-sec`                            | Validates all Terraform configuration from the security point of view. It uses [TFSec](https://github.com/liamg/tfsec)                       |
+| `terraform-plan`                                | Execute terraform plan command onto specific terraform modules |
+
 ## Configuration
 ### 1. Install dependencies
 
