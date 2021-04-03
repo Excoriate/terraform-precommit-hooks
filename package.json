@@ -1,6 +1,6 @@
 {
   "name": "terraform-precommit-hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "commit": "git-cz",
     "lib:install": "chmod +x setup/install-all-packages.sh && ./setup/install-all-packages.sh",
