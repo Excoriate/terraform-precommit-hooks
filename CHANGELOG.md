@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/Excoriate/terraform-precommit-hooks/compare/v0.0.3...v0.0.4) (2021-04-05)
+
+
+### Features
+
+* add new hook for terraform initialization ([2147eb5](https://github.com/Excoriate/terraform-precommit-hooks/commit/2147eb5d984baeba423582d9c0f11dc5e40ec45e))
+
 ### [0.0.3](https://github.com/Excoriate/terraform-precommit-hooks/compare/v0.0.2...v0.0.3) (2021-04-03)
 
 
