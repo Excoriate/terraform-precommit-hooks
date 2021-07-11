@@ -19,22 +19,23 @@ run_pre_hook_validations() {
 usage() {
   cat - >&2 <<EOF
 NAME
-    terraform_plan.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the terraform plan cmd
+    terraform-plan.sh - Handy script to integrate in pre-commit or run in a stand-alone mode to wrap the terraform plan cmd
 
 SYNOPSIS
-    terraform_plan.sh [-h|--help]
-    terraform_plan.sh [-d|--dir[=<arg>]]
+    terraform-plan.sh [-h|--help]
+    terraform-plan.sh [-d|--dir[=<arg>]]
                       [-v|--vars[=<arg>]]
+                      [-e|--extra[=<arg>]]
                       [-b|--backend[=<arg>]]
                       [--]
 
 OPTIONS
   -h, --help
           Prints this and exits
-
   -d, --dir
           The terraform (module) directory
-
+  -e, --extra
+          Extra set of terraform vars sourced from external files (e.g: environment variables). Comma separated vars
   -b, --backend
           (Optional) specify the relative path or directory with the backend config file
 
@@ -75,6 +76,12 @@ parsed_command_line_arguments() {
       CONFIG_TERRAFORM_TFVARS_FILE_PATH="$raw_input_vars"
       shift # past argument=value
       ;;
+    -e=* | --extra=*)
+      raw_input_vars="${i#*=}"
+      echo "Raw extra vars =====> $raw_input_vars"
+      EXTRA_ENV_VARS="$raw_input_vars"
+      shift # past argument=value
+      ;;
     -d=* | --dir=*)
       raw_input_dir="${i#*=}"
       echo "Raw input dir =====> $raw_input_dir"
@@ -90,6 +97,7 @@ parsed_command_line_arguments() {
   echo "DIRECTORY                 = ${DIR}"
   echo "BACKEND PATH              = ${CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH}"
   echo "TERRAFORM TFVARS PATH     = ${CONFIG_TERRAFORM_TFVARS_FILE_PATH}"
+  echo "EXTRA VARS                = ${EXTRA_ENV_VARS}"
 }
 
 # Check whether exists allowed files to be scanned in current directory
@@ -193,6 +201,32 @@ run_terraform_init_cmd(){
   popd >/dev/null
 }
 
+export_extra_vars(){
+
+  if [[ -n ${EXTRA_ENV_VARS} ]];
+    then
+      echo "Extra environment variables has been passed"
+      echo
+
+      local delimiter
+      local -a array
+      delimiter=","
+      array=($(echo $EXTRA_ENV_VARS | tr "$delimiter" " "))
+
+      for var in "${array[@]}"
+      do
+          echo "Environment variable: $var"
+          echo "Exporting..."
+          echo
+
+          export $var
+      done
+    else
+      echo "There is no (extra) environment variables passed"
+      echo
+  fi
+}
+
 run_terraform_plan_cmd(){
   pushd "$DIR" >/dev/null
 
@@ -219,6 +253,9 @@ run_terraform_plan_cmd(){
 }
 
 run_plan() {
+
+  export_extra_vars
+
   # 1. Validate terraform module directory
   check_if_terraform_module_directory_exists
 
@@ -240,7 +277,8 @@ run_plan() {
 
 # Globals
 declare -a DIR
-declare -a CONFIG_TERRAFORM_TFVARS_FILE_PATH
-declare -a CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH
+declare CONFIG_TERRAFORM_TFVARS_FILE_PATH
+declare -a EXTRA_ENV_VARS
+declare CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH
 
 [[ ${BASH_SOURCE[0]} != "$0" ]] || plan_main "$@"
