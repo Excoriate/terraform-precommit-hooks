@@ -1,5 +1,4 @@
 # Terraform PreCommit Hooks
-
 These Hooks work out with pre-commit framework 🚀 — These hooks found inspiration in some other nice projects available in the community, however, I've added my own additions, like adding a hook to cleaning up the `.terraform` (metadata) folder which is usually generated whenever we run a local `terraform` command, or the addition of the `terraform plan` hook as well.
 
 ## Hooks
