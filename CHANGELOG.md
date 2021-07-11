@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/Excoriate/terraform-precommit-hooks/compare/v0.0.5...v0.0.6) (2021-07-11)
+
+
+### Bug Fixes
+
+* change npm version, change to bump lib ([566df27](https://github.com/Excoriate/terraform-precommit-hooks/commit/566df27e3addb07a203e1a8fa790f67753cfbe47))
+* change npm version, change to bump lib ([3174e0a](https://github.com/Excoriate/terraform-precommit-hooks/commit/3174e0a482d38f09e7beff1dc2afc05dadb2d44e))
+
 ### [0.0.4](https://github.com/Excoriate/terraform-precommit-hooks/compare/v0.0.3...v0.0.4) (2021-04-05)
 
 
