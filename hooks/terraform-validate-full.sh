@@ -136,23 +136,19 @@ fatal() {
 
 # Validate if a given directory exists
 check_config_file_if_exists() {
-  pushd "$DIR" >/dev/null
-  local local_config_file="$1"
 
-  if [ -f "$local_config_file" ]; then
+  if [ -f "$CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH" ]; then
     echo
-    echo "Config file --> $local_config_file validated in path --> $(pwd)"
+    echo "Config file --> $CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH validated in path --> $(pwd)"
     echo
 
   else
     echo
-    echo "Error: $local_config_file configuration file not found in path $(pwd)"
+    echo "Error: $CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH configuration file not found in path $(pwd)"
     echo
 
     exit 3
   fi
-
-  popd >/dev/null
 }
 
 # Run terraform validate without backend
@@ -174,7 +170,7 @@ run_validate_terraform_cmd(){
   		echo "Terraform Init with backend file configuration in --> $CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH"
       echo
 
-      check_config_file_if_exists "$CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH"
+      check_config_file_if_exists
 
       terraform init \
       	-backend-config "$CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH"

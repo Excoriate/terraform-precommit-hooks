@@ -9,6 +9,7 @@ These hooks works with  [pre-commit](https://pre-commit.com/) and act onto (`*.t
 | Hook                                              | Description                                                                                                                |
 | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
 | `terraform-validate`                             | Validates all Terraform configuration files.                                                                               |
+| `terraform-validate-full`                             | Validates all Terraform configuration files (with full backend configuration)                                                                              |
 | `terraform-fmt`                                  | Format (check and fix) Terraform configuration following the canonical format.                                                          |
 | `terraform-docs`                                 | Generate and keep up to date the documentation of terraform components. Re-write the `readme.md` file dynamically                                                      |
 | `terraform-lint`                               | Use [TFLint](https://github.com/terraform-linters/tflint) to prevent bugs!                           |
