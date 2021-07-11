@@ -7,7 +7,9 @@
     "lib:install": "chmod +x setup/install-all-packages.sh && ./setup/install-all-packages.sh",
     "push": "git push --follow-tags --set-upstream origin $(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p')",
     "push:force": "git push --follow-tags --set-upstream origin $(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p') --force",
-    "release": "release-it && git add --all -v"
+    "release": "bump patch && git add --all -v",
+    "prerelease": "bump prerelease && git add --all -v",
+    "releasemajor": "bump major && git add --all -v"
   },
   "dependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -15,7 +17,7 @@
     "auto-changelog": "^2.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "4.3.0",
-    "release-it": "^14.10.0"
+    "version-bump-prompt": "^6.1.0"
   },
   "lint-staged": {
     "*.{tf,tfvars}": [
