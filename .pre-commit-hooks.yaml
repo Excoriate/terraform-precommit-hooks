@@ -37,6 +37,15 @@
   files: (\.tf|\.tfvars)$
   exclude: \.terraform\/.*$
 
+- id: terraform-validate-full
+  name: Terraform validate Full
+  description: Validates all Terraform configuration files including the backend
+  require_serial: true
+  entry: hooks/terraform-validate-full.sh
+  language: script
+  files: (\.tf|\.tfvars)$
+  exclude: \.terraform\/.*$
+
 - id: terraform-docs
   name: Terraform Documentation
   description: Generate and keep up to date the documentation of terraform components
