@@ -3,10 +3,11 @@
   "version": "0.0.4",
   "scripts": {
     "commit": "git-cz",
+    "clean": "rm -rf ./node_modules",
     "lib:install": "chmod +x setup/install-all-packages.sh && ./setup/install-all-packages.sh",
     "push": "git push --follow-tags --set-upstream origin $(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p')",
     "push:force": "git push --follow-tags --set-upstream origin $(git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p') --force",
-    "release": "standard-version -a && git add --all -v"
+    "release": "release-it && git add --all -v"
   },
   "dependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -14,7 +15,7 @@
     "auto-changelog": "^2.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "4.3.0",
-    "standard-version": "^9.0.0"
+    "release-it": "^14.10.0"
   },
   "lint-staged": {
     "*.{tf,tfvars}": [
