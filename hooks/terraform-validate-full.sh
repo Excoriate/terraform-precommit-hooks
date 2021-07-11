@@ -23,6 +23,12 @@ parsed_command_line_arguments() {
       usage
       exit 0
       ;;
+    -b=* | --backend=*)
+      raw_input_backend="${i#*=}"
+      echo "Raw input backend =====> $raw_input_backend"
+      CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH="$raw_input_backend"
+      shift # past argument=value
+      ;;
     -d=* | --dir=*)
       raw_input_dir="${i#*=}"
       echo "Raw input dir =====> $raw_input_dir"
@@ -36,6 +42,7 @@ parsed_command_line_arguments() {
   done
 
   echo "DIRECTORY                 = ${DIR}"
+  echo "BACKEND PATH              = ${CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH}"
 }
 
 # Clean up .terraform folder
@@ -103,7 +110,6 @@ NAME
 SYNOPSIS
     terraform-validate-full.sh 	[-h|--help]
     terraform-validate-full.sh 	[-d|--dir[=<arg>]]
-                      					[-v|--vars[=<arg>]]
                       					[-b|--backend[=<arg>]]
                       					[--]
 
@@ -117,9 +123,6 @@ OPTIONS
   -b, --backend
           Directory which contains the remote.config file E.g: config/remote.config
 
-  -v, --vars
-          Directory which contains the terraform.tfvars file E.g: config/terraform.tfvars
-
 EOF
 }
 
@@ -131,23 +134,60 @@ fatal() {
   exit 1
 }
 
+# Validate if a given directory exists
+check_config_file_if_exists() {
+  pushd "$DIR" >/dev/null
+  local local_config_file="$1"
+
+  if [ -f "$local_config_file" ]; then
+    echo
+    echo "Config file --> $local_config_file validated in path --> $(pwd)"
+    echo
+
+  else
+    echo
+    echo "Error: $local_config_file configuration file not found in path $(pwd)"
+    echo
+
+    exit 3
+  fi
+
+  popd >/dev/null
+}
+
 # Run terraform validate without backend
 run_validate_terraform_cmd(){
   pushd "$DIR" >/dev/null
   echo "Running validation in directory -->  $DIR"
   echo
 
-  VALIDATE_ERROR=0
+  local error_in_tf_validate
+  error_in_tf_validate=0
 
-	terraform init -backend=false || VALIDATE_ERROR=$?
- 	terraform validate
+  if [[ -z ${CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH} ]];
+  	then
+  		echo "Running without backend"
+  		echo
 
- 	if [[ ${VALIDATE_ERROR} != 0 ]];
+  		terraform init -backend=false || error_in_tf_validate=$?
+  	else
+  		echo "Terraform Init with backend file configuration in --> $CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH"
+      echo
+
+      check_config_file_if_exists "$CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH"
+
+      terraform init \
+      	-backend-config "$CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH"
+  fi
+
+ 	terraform validate || error_in_tf_validate=$?
+
+ 	if [[ ${error_in_tf_validate} != 0 ]];
  		then
  			echo "Terraform validate failed in directory --> [$DIR]"
  			echo
 
- 			exit ${VALIDATE_ERROR}
+ 			exit ${error_in_tf_validate}
  	fi
 
   popd >/dev/null
@@ -173,5 +213,6 @@ run_validate(){
 
 # global arrays
 declare -a DIR
+declare -a CONFIG_TERRAFORM_REMOTE_BACKEND_FILE_PATH
 
 [[ ${BASH_SOURCE[0]} != "$0" ]] || validate_main "$@"
