@@ -169,7 +169,7 @@ run_tf_lint(){
 			echo "Executing TFLINT without the [MODULE] deep inspection."
 			echo
 
-      tflint --init
+			tflint --init
 			tflint --config="$tflint_config_resolved"
 		else
 			echo "Executing TFLINT with [MODULE] deep inspection."
@@ -177,7 +177,7 @@ run_tf_lint(){
 
 			# An initialization is required
 			run_terraform_init_cmd
-      tflint --init
+			tflint --init
 			tflint --module --config="$tflint_config_resolved"
 			clean_local_terraform_state_folder
 	fi
