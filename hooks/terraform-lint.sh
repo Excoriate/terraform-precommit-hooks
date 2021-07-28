@@ -169,6 +169,7 @@ run_tf_lint(){
 			echo "Executing TFLINT without the [MODULE] deep inspection."
 			echo
 
+      tflint --init
 			tflint --config="$tflint_config_resolved"
 		else
 			echo "Executing TFLINT with [MODULE] deep inspection."
