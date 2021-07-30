@@ -1,6 +1,6 @@
 {
   "name": "terraform-precommit-hooks",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "scripts": {
     "commit": "git-cz",
     "clean": "rm -rf ./node_modules",
@@ -14,7 +14,8 @@
     "@commitlint/config-conventional": "^11.0.0",
     "auto-changelog": "^2.2.1",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "4.3.0"
+    "husky": "4.3.0",
+    "standard-version": "^9.3.1"
   },
   "lint-staged": {
     "*.{tf,tfvars}": [

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/Excoriate/terraform-precommit-hooks/compare/v0.0.8...v0.0.9) (2021-07-30)
+
+
+### Features
+
+* added tflint init for non module arg ([c04f702](https://github.com/Excoriate/terraform-precommit-hooks/commit/c04f70217417f7f6a2123c3cf8b5358b9b4463e7))
+* merged commands ([ce4f855](https://github.com/Excoriate/terraform-precommit-hooks/commit/ce4f855d6b4947ec2631907a4a88d6321089e3de))
+
+
+### Bug Fixes
+
+* convert spaces to tabs ([0b3c63b](https://github.com/Excoriate/terraform-precommit-hooks/commit/0b3c63baf57029bd19bb280cbfe9855abb344fbd))
+
 ### [0.0.8](https://github.com/Excoriate/terraform-precommit-hooks/compare/v0.0.7...v0.0.8) (2021-07-11)
 
 
